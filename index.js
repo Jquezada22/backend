@@ -6,12 +6,14 @@ const app = express();
 // Configurar Multer para subir archivos
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, 'uploads')); // Guardar videos en /uploads
+    cb(null, '/tmp'); // Directorio temporal en Vercel
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + '-' + file.originalname); // Nombre único
   },
 });
+
+
 const upload = multer({ storage });
 
 // Ruta para subir archivos
